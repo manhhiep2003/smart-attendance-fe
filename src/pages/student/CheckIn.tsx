@@ -54,7 +54,7 @@ export default function CheckIn() {
       }
     };
 
-    scanner.render(onScanSuccess, (err) => {});
+    scanner.render(onScanSuccess, () => {});
 
     return () => {
       scanner.clear().catch(console.error);

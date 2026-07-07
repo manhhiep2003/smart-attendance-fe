@@ -1,18 +1,28 @@
+import type { StartSessionResponse } from '@/types/session';
 import axiosClient from './axios.client';
 
 export const sessionApi = {
-  // Giảng viên bắt đầu phiên điểm danh
-  startSession: (data: { classId: string; scheduleId: string; lat: number; lng: number; radius: number }) => {
-    return axiosClient.post('/sessions/start', data);
+  async startSession(data: {
+    classId: string;
+    scheduleId: string;
+    lat: number;
+    lng: number;
+    radius: number;
+  }): Promise<StartSessionResponse> {
+    const res = await axiosClient.post<StartSessionResponse>(
+      '/sessions/start', data
+    );
+
+    return res.data;
   },
 
-  // Giảng viên đóng phiên điểm danh
-  stopSession: (sessionId: string) => {
-    return axiosClient.put(`/sessions/${sessionId}/stop`);
+  async stopSession(sessionId: string) {
+    const res = await axiosClient.put(`/sessions/${sessionId}/stop`);
+    return res.data;
   },
 
-  // Lấy danh sách phiên điểm danh (tuỳ chọn thêm để load lịch sử)
-  getSessionsByClass: (classId: string) => {
-    return axiosClient.get(`/sessions?classId=${classId}`);
-  }
+  async getSessionsByClass(classId: string) {
+    const res = await axiosClient.get(`/sessions?classId=${classId}`);
+    return res.data;
+  },
 };
