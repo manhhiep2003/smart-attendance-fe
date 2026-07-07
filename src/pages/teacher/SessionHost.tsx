@@ -16,8 +16,8 @@ export default function SessionHost() {
   const { isConnected, currentQrToken } = useSocket(sessionId);
 
   // Mock data (sau này lấy từ state/router)
-  const classId = 'class-123';
-  const scheduleId = 'schedule-456';
+  const classId = '3243c787-3701-4179-87f7-acb5780f65c8';
+  const scheduleId = '57968045-7dee-42da-9e87-d7b388623898';
   const radiusLimit = 50;
 
   const handleStartSession = () => {
