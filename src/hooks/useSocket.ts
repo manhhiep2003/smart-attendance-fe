@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'ws://localhost:3000/attendance';
+console.log(import.meta.env.VITE_SOCKET_URL);
 
 export function useSocket(sessionId: string | null) {
   const socketRef = useRef<Socket | null>(null);
@@ -29,6 +30,10 @@ export function useSocket(sessionId: string | null) {
 
     socket.on('qr_updated', (data: { qrCode: string }) => {
       setCurrentQrToken(data.qrCode);
+    });
+
+    socket.on("connect_error", (err) => {
+      console.error(err);
     });
 
     return () => {
