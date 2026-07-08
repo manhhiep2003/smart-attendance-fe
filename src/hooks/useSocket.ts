@@ -12,6 +12,7 @@ export function useSocket(sessionId: string | null) {
   useEffect(() => {
     if (!sessionId) return;
 
+    console.log("Creating socket...");
     const socket = io(SOCKET_URL, {
       transports: ['websocket'],
       reconnectionAttempts: 5,
@@ -20,6 +21,7 @@ export function useSocket(sessionId: string | null) {
     socketRef.current = socket;
 
     socket.on('connect', () => {
+      console.log("Connected");
       setIsConnected(true);
       socket.emit('join_session', { sessionId, interval: 5000 });
     });
