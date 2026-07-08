@@ -10,6 +10,7 @@ export function useSocket(sessionId: string | null) {
   const [currentQrToken, setCurrentQrToken] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log("useEffect", sessionId);
     if (!sessionId) return;
 
     console.log("Creating socket...");

@@ -11,6 +11,8 @@ import { toast } from 'sonner';
 export default function SessionHost() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [isStarting, setIsStarting] = useState(false);
+
+  console.log("Render sessionId:", sessionId);
   
   // Custom hook tự động lo việc kết nối Socket và lắng nghe mã QR mới
   const { isConnected, currentQrToken } = useSocket(sessionId);
@@ -41,6 +43,7 @@ export default function SessionHost() {
           });
           
           setSessionId(res.id);
+          console.log("Session ID:", res.id);
           toast.success('Đã mở phiên điểm danh thành công!');
         } catch (error: any) {
           toast.error(error.message || 'Lỗi khi mở phiên');
