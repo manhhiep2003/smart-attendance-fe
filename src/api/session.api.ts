@@ -9,20 +9,20 @@ export const sessionApi = {
     lng: number;
     radius: number;
   }): Promise<StartSessionResponse> {
-    const res = await axiosClient.post<StartSessionResponse>(
+    const res = await axiosClient.post<any, StartSessionResponse>(
       '/sessions/start', data
     );
 
-    return res.data;
+    return res;
   },
 
   async stopSession(sessionId: string) {
     const res = await axiosClient.put(`/sessions/${sessionId}/stop`);
-    return res.data;
+    return res;
   },
 
   async getSessionsByClass(classId: string) {
     const res = await axiosClient.get(`/sessions?classId=${classId}`);
-    return res.data;
+    return res;
   },
 };
