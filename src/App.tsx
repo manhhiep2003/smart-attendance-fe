@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
-
 import TeacherLayout from './layouts/TeacherLayout';
 import StudentLayout from './layouts/StudentLayout';
 import SessionHost from './pages/teacher/SessionHost';
 import CheckIn from './pages/student/CheckIn';
+import Dashboard from '@/pages/teacher/Dashboard';
 
 export default function App() {
   return (
@@ -14,7 +14,8 @@ export default function App() {
       <Routes>
         {/* Nhóm Route Giảng viên */}
         <Route path="/teacher" element={<TeacherLayout />}>
-          <Route index element={<Navigate to="session" replace />} />
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="session" element={<SessionHost />} />
         </Route>
 

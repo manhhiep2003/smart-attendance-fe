@@ -7,8 +7,12 @@ import { Badge } from '../../components/ui/badge';
 import { sessionApi } from '../../api/session.api';
 import { useSocket } from '../../hooks/useSocket';
 import { toast } from 'sonner';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export default function SessionHost() {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [isStarting, setIsStarting] = useState(false);
 
@@ -17,10 +21,14 @@ export default function SessionHost() {
   // Custom hook tự động lo việc kết nối Socket và lắng nghe mã QR mới
   const { isConnected, currentQrToken } = useSocket(sessionId);
 
-  // Mock data (sau này lấy từ state/router)
-  const classId = '4e4fec8e-39e6-4f30-b8b6-da50af288df9';
-  const scheduleId = 'f9923074-ed39-4bd0-b3e2-ed5675eb1f65';
+  const classId = searchParams.get('classId');
+  const scheduleId = searchParams.get('scheduleId');
   const radiusLimit = 50;
+
+  if (!classId || !scheduleId) {
+    navigate('/teacher/dashboard');
+    return null;
+  }
 
   const handleStartSession = () => {
     setIsStarting(true);

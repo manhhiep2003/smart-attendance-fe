@@ -9,7 +9,7 @@ export const attendanceApi = {
     studentLng: number;
   }): Promise<CheckInResponse> {
     const response = await axiosClient.post<CheckInResponse>(
-      '/attendance/check-in',
+      '/attendances/check-in',
       data
     );
 
