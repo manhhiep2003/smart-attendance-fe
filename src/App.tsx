@@ -5,6 +5,9 @@ import StudentLayout from './layouts/StudentLayout';
 import SessionHost from './pages/teacher/SessionHost';
 import CheckIn from './pages/student/CheckIn';
 import Dashboard from '@/pages/teacher/Dashboard';
+import ActivityDetail from '@/pages/teacher/ActivityDetail';
+import Timetable from '@/pages/teacher/Timetable';
+import StudentGroup from '@/pages/teacher/StudentGroup';
 
 export default function App() {
   return (
@@ -17,6 +20,9 @@ export default function App() {
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="session" element={<SessionHost />} />
+          <Route path="timetable" element={<Timetable />} />
+          <Route path="activity/:scheduleId" element={<ActivityDetail />} />
+          <Route path="student-group/:classId" element={<StudentGroup />} />
         </Route>
 
         {/* Nhóm Route Sinh viên */}
